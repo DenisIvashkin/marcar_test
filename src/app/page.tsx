@@ -1,7 +1,6 @@
 'use client';
 
-import React from 'react';
-
+import React, { Suspense } from 'react';
 import { useState, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { fetchCars } from '@/lib/API';
@@ -10,7 +9,7 @@ import { Car } from '@/lib/types';
 import { SortControls } from '@/components/SortControls';
 import { Pagination } from '@/components/Pagination';
 
-export default function CarsPage() {
+function CarsContent() {
   const searchParams = useSearchParams();
   const [cars, setCars] = useState<Car[]>([]);
   const [meta, setMeta] = useState({ totalPages: 1, currentPage: 1 });
@@ -63,5 +62,13 @@ export default function CarsPage() {
 
       <Pagination currentPage={meta.currentPage} totalPages={meta.totalPages} />
     </div>
+  );
+}
+
+export default function CarsPage() {
+  return (
+    <Suspense fallback={<div>Загрузка...</div>}>
+      <CarsContent />
+    </Suspense>
   );
 }

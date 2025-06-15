@@ -21,19 +21,13 @@ const Information = ({ car }: CarCardProps) => {
       </div>
 
       <div className="mt-2 grid grid-cols-2 gap-4 text-sm">
-        {/* Мощность */}
         <CarFeature
           icon={<BoltIcon className="w-5 h-5 text-gray-600" />}
           text={car.modification_id}
         />
 
-        {/* Состояние */}
         <CarFeature icon={<Cog8ToothIcon className="w-5 h-5 text-gray-600" />} text={car.state} />
-
-        {/* Цвет */}
         <CarFeature icon={<PaintBrushIcon className="w-5 h-5 text-gray-600" />} text={car.color} />
-
-        {/* Пробег */}
         <CarFeature
           icon={<TruckIcon className="w-5 h-5 text-gray-600" />}
           text={car.run ? `${car.run.toLocaleString()} км` : ''}

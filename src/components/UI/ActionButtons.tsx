@@ -4,12 +4,10 @@ const ActionButtons = () => {
   return (
     <div className="flex items-center justify-between pt-3 border-gray-200 bg-white rounded-b-lg">
       <div className="flex items-center space-x-3">
-        {/* Кнопка "Избранное" */}
         <button
           className="p-0 text-gray-400 hover:text-red-500 transition-colors duration-200 cursor-pointer"
           onClick={(e) => {
             e.currentTarget.classList.toggle('text-red-500');
-            // Логика добавления в избранное
           }}
           aria-label="Добавить в избранное"
         >
@@ -29,7 +27,6 @@ const ActionButtons = () => {
           </svg>
         </button>
 
-        {/* Кнопка "Сравнить" */}
         <button
           className=" text-gray-400 hover:text-blue-500 transition-colors duration-200 cursor-pointer"
           aria-label="Сравнить"
@@ -51,7 +48,6 @@ const ActionButtons = () => {
         </button>
       </div>
 
-      {/* Кнопка "Купить" */}
       <button className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-md transition-colors duration-200 flex items-center cursor-pointer">
         <svg
           xmlns="http://www.w3.org/2000/svg"
