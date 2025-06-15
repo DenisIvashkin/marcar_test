@@ -1,64 +1,46 @@
 import React from 'react';
-import {BoltIcon, Cog8ToothIcon, PaintBrushIcon, TruckIcon} from "@heroicons/react/16/solid";
-import {Car} from "@/lib/types";
+import { BoltIcon, Cog8ToothIcon, PaintBrushIcon, TruckIcon } from '@heroicons/react/16/solid';
+import { Car } from '@/lib/types';
+import CarFeature from '@/components/UI/CarFeature';
 
 interface CarCardProps {
-    car: Car;
+  car: Car;
 }
 
-const Information = ({car}: CarCardProps) => {
-    return (
-        <div>
-            <h3 className="text-xl font-bold bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent truncate cursor-pointer">
-                {car.mark_id} {car.folder_id}
-            </h3>
-            <div className="mt-4 pt-2 border-t flex gap-4 items-baseline">
-                <p className="text-2xl font-bold text-gray-600">
-                    {car.price.toLocaleString()} ₽
-                </p>
-                <p className="text-1 font-bold text-gray-400">
-                    от {Math.round(car.price/30).toLocaleString()} ₽/мес
-                </p>
-            </div>
+const Information = ({ car }: CarCardProps) => {
+  return (
+    <div>
+      <h3 className="text-xl font-bold bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent truncate cursor-pointer">
+        {car.mark_id} {car.folder_id}
+      </h3>
+      <div className="mt-4 pt-2 border-t flex gap-4 items-baseline">
+        <p className="text-2xl font-bold text-gray-600">{car.price.toLocaleString()} ₽</p>
+        <p className="text-1 font-bold text-gray-400">
+          от {Math.round(car.price / 30).toLocaleString()} ₽/мес
+        </p>
+      </div>
 
-            <div className="mt-2 grid grid-cols-2 gap-4 text-sm">
+      <div className="mt-2 grid grid-cols-2 gap-4 text-sm">
+        {/* Мощность */}
+        <CarFeature
+          icon={<BoltIcon className="w-5 h-5 text-gray-600" />}
+          text={car.modification_id}
+        />
 
-                {/* Мощность */}
-                <div className="flex items-center gap-2">
-                    <BoltIcon className="w-5 h-5 text-gray-600" />
-                    <div>
-                        <p className="text-gray-800">{car.modification_id || '—'}</p>
-                    </div>
-                </div>
+        {/* Состояние */}
+        <CarFeature icon={<Cog8ToothIcon className="w-5 h-5 text-gray-600" />} text={car.state} />
 
-                {/* Состояние */}
-                <div className="flex items-center gap-2">
-                    <Cog8ToothIcon className="w-5 h-5 text-gray-600" />
-                    <div>
-                        <p className="text-gray-800">{car.state || '—'}</p>
-                    </div>
-                </div>
+        {/* Цвет */}
+        <CarFeature icon={<PaintBrushIcon className="w-5 h-5 text-gray-600" />} text={car.color} />
 
-                {/* Цвет */}
-                <div className="flex items-center gap-2">
-                    <PaintBrushIcon className="w-5 h-5 text-gray-600" />
-                    <div>
-                        <p className="text-gray-800">{car.color || '—'}</p>
-                    </div>
-                </div>
-
-                {/* Пробег */}
-                <div className="flex items-center gap-2">
-                    <TruckIcon className="w-5 h-5 text-gray-600" />
-                    <div>
-                        <p className="text-gray-800">
-                            {car.run ? `${car.run.toLocaleString()} км` : '—'}
-                        </p>
-                    </div>
-                </div>
-            </div>
-            </div>
-    );
+        {/* Пробег */}
+        <CarFeature
+          icon={<TruckIcon className="w-5 h-5 text-gray-600" />}
+          text={car.run ? `${car.run.toLocaleString()} км` : ''}
+        />
+      </div>
+    </div>
+  );
 };
 
 export default Information;
